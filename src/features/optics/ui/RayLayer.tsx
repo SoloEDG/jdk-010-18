@@ -6,11 +6,14 @@ export function RayLayer({
   visible,
   normals,
   doc,
+  dashed = false,
 }: {
   result: TraceResult;
   visible: boolean;
   normals: boolean;
   doc: LabDocument;
+  /** 比较模式下参考分支的光路以虚线叠加 */
+  dashed?: boolean;
 }) {
   return (
     <g pointerEvents="none">
@@ -25,6 +28,7 @@ export function RayLayer({
             stroke={wavelengthColor(s.wavelength)}
             strokeWidth="1.3"
             opacity=".7"
+            strokeDasharray={dashed ? "7 6" : undefined}
           />
         ))}
       {normals &&
